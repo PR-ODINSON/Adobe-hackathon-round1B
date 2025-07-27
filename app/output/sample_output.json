@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "input_documents": [
+      "sample.pdf",
+      "api_documentation.pdf"
+    ],
+    "persona": "Software Engineer working on Adobe Creative Cloud",
+    "job_to_be_done": "Understand and implement new authentication protocols for secure API access and user session management",
+    "processing_timestamp": "2024-01-15T14:30:45.123456",
+    "processing_stats": {
+      "documents_processed": 2,
+      "sections_extracted": 15,
+      "sections_ranked": 8,
+      "processing_time": 0
+    }
+  },
+  "extracted_sections": [
+    {
+      "document": "api_documentation.pdf",
+      "section_title": "OAuth 2.0 Authentication Flow",
+      "importance_rank": 1,
+      "page_number": 12,
+      "similarity_score": 0.8945
+    },
+    {
+      "document": "api_documentation.pdf", 
+      "section_title": "Session Management and Token Refresh",
+      "importance_rank": 2,
+      "page_number": 18,
+      "similarity_score": 0.8721
+    },
+    {
+      "document": "sample.pdf",
+      "section_title": "Security Best Practices for API Development",
+      "importance_rank": 3,
+      "page_number": 5,
+      "similarity_score": 0.8456
+    },
+    {
+      "document": "api_documentation.pdf",
+      "section_title": "JWT Token Validation and Signing",
+      "importance_rank": 4,
+      "page_number": 25,
+      "similarity_score": 0.8123
+    },
+    {
+      "document": "sample.pdf",
+      "section_title": "User Authentication Middleware",
+      "importance_rank": 5,
+      "page_number": 8,
+      "similarity_score": 0.7892
+    }
+  ],
+  "subsection_analysis": [
+    {
+      "document": "api_documentation.pdf",
+      "refined_text": "OAuth 2.0 provides a secure authorization framework for API access. The authentication flow involves client registration, authorization code exchange, and access token generation. Key implementation considerations include proper scope validation, secure token storage, and refresh token rotation for enhanced security.",
+      "page_number": 12,
+      "section_title": "OAuth 2.0 Authentication Flow",
+      "confidence_score": 0.8945
+    },
+    {
+      "document": "api_documentation.pdf",
+      "refined_text": "Session management requires careful handling of user sessions and token lifecycle. Implement automatic token refresh mechanisms, secure session storage, and proper logout procedures. Consider implementing sliding session windows and concurrent session limits for enterprise security requirements.",
+      "page_number": 18,
+      "section_title": "Session Management and Token Refresh", 
+      "confidence_score": 0.8721
+    },
+    {
+      "document": "sample.pdf",
+      "refined_text": "API security best practices include input validation, rate limiting, HTTPS enforcement, and proper error handling. Implement authentication middleware that validates tokens on each request, handles expired sessions gracefully, and logs security events for monitoring and audit purposes.",
+      "page_number": 5,
+      "section_title": "Security Best Practices for API Development",
+      "confidence_score": 0.8456
+    }
+  ]
+} 
