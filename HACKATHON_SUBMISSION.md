@@ -1,4 +1,4 @@
-# 🎯 Adobe India Hackathon - Round 1B Submission
+# Adobe India Hackathon - Round 1B Submission
 
 ## **Persona-Driven Document Intelligence Pipeline**
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 🏆 **Solution Overview**
+## **Solution Overview**
 
 Our solution is a sophisticated document intelligence pipeline that:
 
@@ -19,31 +19,31 @@ Our solution is a sophisticated document intelligence pipeline that:
 
 ---
 
-## 📦 **Deliverables**
+## **Deliverables**
 
-### ✅ **Required Files Implemented**
+### **Required Files Implemented**
 
 ```
 Round 1B/
 ├── src/
-│   ├── main.py          # ✅ Entry point & pipeline orchestrator
-│   ├── parser.py        # ✅ PDF section extraction using PyMuPDF  
-│   ├── embeddings.py    # ✅ SBERT embedding generation
-│   ├── matcher.py       # ✅ Cosine similarity ranking
-│   ├── utils.py         # ✅ JSON I/O, timestamps, formatting
-│   └── __init__.py      # ✅ Package initialization
+│   ├── main.py          # Entry point & pipeline orchestrator
+│   ├── parser.py        # PDF section extraction using PyMuPDF  
+│   ├── embeddings.py    # SBERT embedding generation
+│   ├── matcher.py       # Cosine similarity ranking
+│   ├── utils.py         # JSON I/O, timestamps, formatting
+│   └── __init__.py      # Package initialization
 ├── app/
-│   ├── input/           # ✅ Input JSON directory
+│   ├── input/           # Input JSON directory
 │   │   └── challenge1b_input.json
-│   └── output/          # ✅ Output results directory
-├── requirements.txt     # ✅ Dependencies specification
-├── README.md           # ✅ Comprehensive documentation
-├── run_pipeline.py     # ✅ Standalone execution script
-├── test_basic.py       # ✅ Structure validation tests
-└── HACKATHON_SUBMISSION.md # ✅ This submission overview
+│   └── output/          # Output results directory
+├── requirements.txt     # Dependencies specification
+├── README.md           # Comprehensive documentation
+├── run_pipeline.py     # Standalone execution script
+├── test_basic.py       # Structure validation tests
+└── HACKATHON_SUBMISSION.md # This submission overview
 ```
 
-### ✅ **Input/Output Format Compliance**
+### **Input/Output Format Compliance**
 
 **Input:** `/app/input/challenge1b_input.json`
 ```json
@@ -86,7 +86,7 @@ Round 1B/
 
 ---
 
-## 🧠 **Technical Architecture**
+## **Technical Architecture**
 
 ### **1. PDF Processing (`parser.py`)**
 - **PyMuPDF Integration**: Robust text extraction from PDF documents
@@ -114,27 +114,27 @@ Round 1B/
 
 ---
 
-## 🚀 **Key Features & Innovations**
+## **Key Features & Innovations**
 
-### ✅ **Robustness**
+### **Robustness**
 - Handles multiple PDF formats and structures
 - Graceful degradation for missing/corrupted files  
 - Configurable parameters for different use cases
 - Comprehensive error handling and logging
 
-### ✅ **Performance**
+### **Performance**
 - Efficient text chunking for large documents
 - Batch embedding generation
 - Optimized similarity calculations
 - ~2-5 seconds per PDF page processing
 
-### ✅ **Accuracy**
+### **Accuracy**
 - State-of-the-art sentence transformers
 - Context-aware persona + job combination
 - Hierarchical section understanding
 - 85-95% relevance matching accuracy
 
-### ✅ **Extensibility**
+### **Extensibility**
 - Modular architecture for easy enhancement
 - Configurable embedding models
 - Pluggable ranking algorithms
@@ -142,7 +142,7 @@ Round 1B/
 
 ---
 
-## 🎯 **Use Cases Addressed**
+## **Use Cases Addressed**
 
 - **Developer Documentation**: Find relevant API sections for engineers
 - **Research Papers**: Extract methodology for researchers
@@ -152,19 +152,19 @@ Round 1B/
 
 ---
 
-## 📊 **Testing & Validation**
+## **Testing & Validation**
 
-### **Structure Tests** ✅
+### **Structure Tests** 
 - All required files and directories present
 - Valid JSON input/output format
 - Proper module organization
 
-### **Component Tests** ✅  
+### **Component Tests**  
 - Utility functions (text cleaning, chunking)
 - Input validation and error handling
 - Output structure generation
 
-### **Integration Ready** ✅
+### **Integration Ready** 
 - Pipeline orchestration validated
 - Error handling implemented
 - Ready for PDF document processing
@@ -206,7 +206,7 @@ results = pipeline.run()
 
 ---
 
-## 📋 **Dependencies**
+## **Dependencies**
 
 - **PyMuPDF** (1.23.26): PDF processing and text extraction
 - **sentence-transformers** (2.2.2): Semantic embeddings
@@ -216,16 +216,15 @@ results = pipeline.run()
 
 ---
 
-## 🏁 **Submission Status**
+## **Submission Status**
 
-- ✅ All required files implemented
-- ✅ I/O format compliance verified  
-- ✅ Core functionality tested
-- ✅ Documentation complete
-- ✅ Ready for evaluation
+- All required files implemented
+- I/O format compliance verified  
+- Core functionality tested
+- Documentation complete
+- Ready for evaluation
 
 **This solution successfully addresses the Round 1B challenge requirements and is ready for Adobe Hackathon evaluation.**
 
 ---
-
-*Made with ❤️ for Adobe India Hackathon 2024* 
+ 
