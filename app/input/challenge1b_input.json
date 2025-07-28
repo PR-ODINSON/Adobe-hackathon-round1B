@@ -1,4 +1,19 @@
 {
-  "persona": "Software Engineer working on Adobe Creative Cloud",
-  "job_to_be_done": "Understand and implement new authentication protocols for secure API access and user session management"
+    "challenge_info": {
+        "challenge_id": "round_1b_004",
+        "test_case_name": "authentication_protocols",
+        "description": "Authentication Implementation"
+    },
+    "documents": [
+        {
+            "filename": "Definitions_of_Sociology.pdf",
+            "title": "Definitions of Sociology"
+        }
+    ],
+    "persona": {
+        "role": "Software Engineer working on Adobe Creative Cloud"
+    },
+    "job_to_be_done": {
+        "task": "Understand and implement new authentication protocols for secure API access and user session management"
+    }
 } 

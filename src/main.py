@@ -105,13 +105,26 @@ class DocumentIntelligencePipeline:
         except Exception as e:
             raise ValueError(f"Failed to parse input JSON file {self.input_file}: {e}")
         
-        # Validate required fields
+        # Validate required fields for hackathon format
         required_fields = ["persona", "job_to_be_done"]
         for field in required_fields:
             if field not in input_data:
                 raise ValueError(f"Missing required field in input JSON: {field}")
-            if not isinstance(input_data[field], str) or not input_data[field].strip():
-                raise ValueError(f"Field '{field}' must be a non-empty string")
+        
+        # Handle both old format (direct strings) and new format (nested objects)
+        if isinstance(input_data["persona"], dict):
+            if "role" not in input_data["persona"]:
+                raise ValueError("Missing 'role' field in persona object")
+            input_data["persona_text"] = input_data["persona"]["role"]
+        else:
+            input_data["persona_text"] = input_data["persona"]
+        
+        if isinstance(input_data["job_to_be_done"], dict):
+            if "task" not in input_data["job_to_be_done"]:
+                raise ValueError("Missing 'task' field in job_to_be_done object")
+            input_data["job_to_be_done_text"] = input_data["job_to_be_done"]["task"]
+        else:
+            input_data["job_to_be_done_text"] = input_data["job_to_be_done"]
         
         return input_data
     
@@ -184,8 +197,8 @@ class DocumentIntelligencePipeline:
     def _create_embeddings(self, input_data: Dict[str, Any], 
                           sections: List[Dict[str, Any]]) -> tuple:
         """Create embeddings for query and document sections."""
-        persona = input_data["persona"]
-        job_to_be_done = input_data["job_to_be_done"]
+        persona = input_data["persona_text"]
+        job_to_be_done = input_data["job_to_be_done_text"]
         
         query_embedding, embedded_sections = create_embeddings(
             persona, job_to_be_done, sections
@@ -207,15 +220,18 @@ class DocumentIntelligencePipeline:
                       section_summaries: List[Dict[str, Any]], 
                       subsection_analysis: List[Dict[str, Any]],
                       pdf_files: List[str]) -> Dict[str, Any]:
-        """Create the final output structure."""
-        # Create base output structure
+        """Create the final output structure in hackathon format."""
+        # Extract persona and job_to_be_done for output (use original format)
+        persona_text = input_data["persona_text"]
+        job_to_be_done_text = input_data["job_to_be_done_text"]
+        
+        # Create base output structure matching hackathon format
         output_data = {
             "metadata": {
                 "input_documents": [os.path.basename(f) for f in pdf_files],
-                "persona": input_data["persona"],
-                "job_to_be_done": input_data["job_to_be_done"],
-                "processing_timestamp": get_timestamp(),
-                "processing_stats": self.processing_stats.copy()
+                "persona": persona_text,
+                "job_to_be_done": job_to_be_done_text,
+                "processing_timestamp": get_timestamp()
             },
             "extracted_sections": section_summaries,
             "subsection_analysis": subsection_analysis
