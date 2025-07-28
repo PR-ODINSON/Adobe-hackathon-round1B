@@ -5,6 +5,9 @@ Uses PyMuPDF (fitz) for PDF processing and text extraction.
 
 import fitz  # PyMuPDF
 import re
+import argparse
+import json
+import os
 from typing import List, Dict, Tuple, Any
 from .utils import clean_text, format_section_title
 
@@ -267,3 +270,38 @@ def parse_document(pdf_path: str) -> List[Dict[str, Any]]:
     sections = parser.extract_sections(pdf_path)
     
     return [section.to_dict() for section in sections] 
+
+
+def main():
+    """Command line interface for the PDF parser."""
+    parser = argparse.ArgumentParser(description='Parse PDF documents and extract sections')
+    parser.add_argument('--input', required=True, help='Input PDF file path')
+    parser.add_argument('--output', required=True, help='Output JSON file path')
+    
+    args = parser.parse_args()
+    
+    try:
+        # Parse the PDF
+        print(f"Parsing PDF: {args.input}")
+        sections = parse_document(args.input)
+        
+        # Create output directory if it doesn't exist
+        output_dir = os.path.dirname(args.output)
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
+        
+        # Save to JSON
+        with open(args.output, 'w', encoding='utf-8') as f:
+            json.dump(sections, f, indent=2, ensure_ascii=False)
+        
+        print(f"Successfully parsed {len(sections)} sections")
+        print(f"Output saved to: {args.output}")
+        return 0
+        
+    except Exception as e:
+        print(f"Error parsing PDF: {e}")
+        return 1
+
+
+if __name__ == "__main__":
+    exit(main()) 

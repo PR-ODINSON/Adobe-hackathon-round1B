@@ -4,6 +4,169 @@
 
 A sophisticated document intelligence pipeline that extracts and ranks the most relevant sections from PDF documents based on user persona and job requirements using advanced NLP techniques.
 
+## 🚀 Quick Start with Docker
+
+### Prerequisites
+- Docker installed on your system
+- docker-compose installed
+
+### Step 1: Prepare Your Files
+1. Place your PDF files in the `app/input/` directory
+2. Ensure `app/input/challenge1b_input.json` exists with your persona and job requirements:
+
+```json
+{
+  "persona": "Software Engineer working on Adobe Creative Cloud",
+  "job_to_be_done": "Understand and implement new authentication protocols for secure API access and user session management"
+}
+```
+
+### Step 2: Run the Pipeline
+
+#### Option A: Complete Automated Pipeline (Recommended)
+```bash
+# Linux/Mac
+./run.sh run
+
+# Windows
+run.bat run
+```
+
+#### Option B: Using Docker Compose Directly
+```bash
+# Build and run the pipeline
+docker-compose up --build
+
+# Or run in background
+docker-compose up --build -d
+```
+
+#### Option C: Step-by-Step Workflow
+```bash
+# 1. Build the Docker image
+./run.sh build
+
+# 2. Parse a specific PDF (optional)
+./run.sh parse /app/input/Definitions_of_Sociology.pdf /app/input/parsed.json
+
+# 3. Run the complete pipeline
+./run.sh run
+```
+
+## 📁 Directory Structure
+
+```
+Round 1B/
+├── app/
+│   ├── input/                    # 📂 Place your files here
+│   │   ├── challenge1b_input.json   # ⚙️ Persona and job config
+│   │   └── *.pdf                     # 📄 Your PDF documents
+│   └── output/                   # 📊 Results appear here
+│       └── challenge1b_output.json  # 🎯 Final output
+├── src/                          # 💻 Source code
+├── Dockerfile                    # 🐳 Docker configuration
+├── docker-compose.yml           # 🐳 Docker Compose setup
+├── run.sh                        # 🔧 Linux/Mac runner script
+├── run.bat                       # 🔧 Windows runner script
+└── requirements.txt             # 📦 Python dependencies
+```
+
+## 🛠️ Available Commands
+
+### Using Run Scripts
+
+**Linux/Mac (`./run.sh`):**
+```bash
+./run.sh build        # Build Docker image
+./run.sh run          # Run complete pipeline
+./run.sh parse INPUT OUTPUT  # Parse specific PDF
+./run.sh shell        # Open interactive shell
+./run.sh clean        # Clean up Docker resources
+```
+
+**Windows (`run.bat`):**
+```cmd
+run.bat build         # Build Docker image
+run.bat run           # Run complete pipeline
+run.bat parse INPUT OUTPUT   # Parse specific PDF
+run.bat shell         # Open interactive shell
+run.bat clean         # Clean up Docker resources
+```
+
+### Using Docker Directly
+
+```bash
+# Parse PDF manually
+docker-compose run --rm document-intelligence python -m src.parser --input /app/input/document.pdf --output /app/input/parsed.json
+
+# Run main pipeline
+docker-compose run --rm document-intelligence python src/main.py
+
+# Interactive debugging
+docker-compose run --rm document-intelligence /bin/bash
+```
+
+## 📝 Input Format
+
+Your `app/input/challenge1b_input.json` should contain:
+
+```json
+{
+  "persona": "Your role/profession",
+  "job_to_be_done": "Specific task or goal you want to accomplish"
+}
+```
+
+## 📊 Output Format
+
+The pipeline generates `app/output/challenge1b_output.json` with:
+
+- **metadata**: Processing information and statistics
+- **extracted_sections**: Top ranked sections relevant to your persona
+- **subsection_analysis**: Detailed analysis of document subsections
+
+## 🐛 Troubleshooting
+
+### Common Issues:
+
+1. **"No PDF files found"**
+   - Ensure PDF files are in `app/input/` directory
+   - Check file permissions
+
+2. **"Input JSON not found"**
+   - Create `app/input/challenge1b_input.json` with proper format
+
+3. **Docker build failures**
+   - Ensure Docker is running
+   - Try: `./run.sh clean` then `./run.sh build`
+
+4. **Permission issues on Linux/Mac**
+   - Make run script executable: `chmod +x run.sh`
+
+### Debug Mode:
+```bash
+# Open shell in container for debugging
+./run.sh shell
+
+# Check logs
+docker-compose logs
+```
+
+## 🔧 Development
+
+For development and testing:
+
+```bash
+# Build image
+./run.sh build
+
+# Run with mounted volumes (auto-reload)
+docker-compose up --build
+
+# Run tests
+docker-compose run --rm document-intelligence python -m pytest
+```
+
 ## 🏗️ Architecture
 
 ```
